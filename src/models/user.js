@@ -41,10 +41,40 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     }
   );
-  User.associate = (model) => {
-    User.hasMany(model.Post, {
+  User.associate = (models) => {
+    User.hasMany(models.Post, {
       foreignKey: {
         name: "userId",
+        allowNull: false,
+      },
+      onDelete: "RESTRICT",
+    });
+    User.hasMany(models.Comment, {
+      foreignKey: {
+        name: "userId",
+        allowNull: false,
+      },
+      onDelete: "RESTRICT",
+    });
+    User.hasMany(models.Like, {
+      foreignKey: {
+        name: "userId",
+        allowNull: false,
+      },
+      onDelete: "RESTRICT",
+    });
+    User.hasMany(models.Friend, {
+      as: "Requester",
+      foreignKey: {
+        name: "requesterId",
+        allowNull: false,
+      },
+      onDelete: "RESTRICT",
+    });
+    User.hasMany(models.Friend, {
+      as: "Receiver",
+      foreignKey: {
+        name: "receiverId",
         allowNull: false,
       },
       onDelete: "RESTRICT",

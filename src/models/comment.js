@@ -6,5 +6,22 @@ module.exports = (sequelize, DataTypes) => {
     },
     { underscore: true }
   );
+
+  Comment.associate = (models) => {
+    Comment.belongsTo(models.User, {
+      foreignKey: {
+        name: "userId",
+        allowNull: false,
+      },
+      onDelete: "RESTRICT",
+    });
+    Comment.belongsTo(models.Post, {
+      foreignKey: {
+        name: "postId",
+        allowNull: false,
+      },
+      onDelete: "CASCADE",
+    });
+  };
   return Comment;
 };
