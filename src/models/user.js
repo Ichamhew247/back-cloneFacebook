@@ -41,5 +41,14 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     }
   );
+  User.associate = (model) => {
+    User.hasMany(model.Post, {
+      foreignKey: {
+        name: "userId",
+        allowNull: false,
+      },
+      onDelete: "RESTRICT",
+    });
+  };
   return User;
 };

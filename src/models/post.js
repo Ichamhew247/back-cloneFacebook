@@ -15,5 +15,14 @@ module.export = (sequelize, DataTypes) => {
       paranoid: true,
     }
   );
+  Post.associate = (models) => {
+    Post.belongTo(models.User, {
+      foreignKey: {
+        name: "userId",
+        allowNull: false,
+      },
+      onDelete: "RESTRICT",
+    });
+  };
   return Post;
 };
