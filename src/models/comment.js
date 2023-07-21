@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const Comment = sequelize.define(
     "Comment",
     {
-      messege: DataTypes.STRING,
+      message: DataTypes.STRING,
     },
     { underscore: true }
   );
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         name: "postId",
         allowNull: false,
       },
-      onDelete: "CASCADE",
+      onDelete: "RESTRICT",
     });
   };
   return Comment;

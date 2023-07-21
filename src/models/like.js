@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Like = sequelize.define("like", {}, { underscore: true });
+  const Like = sequelize.define("Like", {}, { underscore: true });
   Like.associate = (models) => {
     Like.belongsTo(models.User, {
       foreignKey: {

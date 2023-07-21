@@ -42,13 +42,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   User.associate = (models) => {
-    User.hasMany(models.Post, {
-      foreignKey: {
-        name: "userId",
-        allowNull: false,
-      },
-      onDelete: "RESTRICT",
-    });
+    // User.hasMany(models.Post, {
+    //   foreignKey: {
+    //     name: "userId",
+    //     allowNull: false,
+    //   },
+    //   onDelete: "RESTRICT",
+    // });
     User.hasMany(models.Comment, {
       foreignKey: {
         name: "userId",
