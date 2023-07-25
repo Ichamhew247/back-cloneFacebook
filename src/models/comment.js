@@ -2,13 +2,20 @@ module.exports = (sequelize, DataTypes) => {
   const Comment = sequelize.define(
     "Comment",
     {
-      message: DataTypes.STRING,
+      message: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
-    { underscore: true }
-  );
 
+    {
+      underscored: true,
+    }
+  );
   Comment.associate = (models) => {
-    Comment.belongsTo(models.User, {
+    Comment.hasMany(models.User, {
       foreignKey: {
         name: "userId",
         allowNull: false,

@@ -4,6 +4,7 @@ module.exports = (sequelize, Datatypes) => {
     {
       status: {
         type: Datatypes.ENUM("PENDING", "ACCEPTED"),
+        allowNull: false,
       },
     },
     { underscored: true }
