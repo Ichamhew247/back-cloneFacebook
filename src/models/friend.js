@@ -4,7 +4,7 @@ module.exports = (sequelize, Datatypes) => {
     {
       status: {
         type: Datatypes.ENUM("PENDING", "ACCEPTED"),
-        allowNull: false,
+        allowNull: true,
       },
     },
     { underscored: true }
@@ -14,7 +14,7 @@ module.exports = (sequelize, Datatypes) => {
       as: "Requester",
       foreignKey: {
         name: "requesterId",
-        allowNull: false,
+        allowNull: true,
       },
       onDelete: "RESTRICT",
     });
@@ -22,7 +22,7 @@ module.exports = (sequelize, Datatypes) => {
       as: "Receiver",
       foreignKey: {
         name: "receiverId",
-        allowNull: false,
+        allowNull: true,
       },
       onDelete: "RESTRICT",
     });

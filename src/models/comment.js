@@ -18,14 +18,14 @@ module.exports = (sequelize, DataTypes) => {
     Comment.hasMany(models.User, {
       foreignKey: {
         name: "userId",
-        allowNull: false,
+        allowNull: true,
       },
       onDelete: "RESTRICT",
     });
     Comment.belongsTo(models.Post, {
       foreignKey: {
         name: "postId",
-        allowNull: false,
+        allowNull: true,
       },
       onDelete: "RESTRICT",
     });

@@ -4,14 +4,14 @@ module.exports = (sequelize, DataTypes) => {
     {
       firstName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         validate: {
           notEmpty: true,
         },
       },
       lastName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         validate: {
           notEmpty: true,
         },
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       profileImage: DataTypes.STRING,
       coverImage: DataTypes.STRING,
@@ -42,24 +42,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   User.associate = (models) => {
-    // User.hasMany(models.Post, {
-    //   foreignKey: {
-    //     name: "userId",
-    //     allowNull: false,
-    //   },
-    //   onDelete: "RESTRICT",
-    // });
     User.hasMany(models.Comment, {
       foreignKey: {
         name: "userId",
-        allowNull: false,
+        allowNull: true,
       },
       onDelete: "RESTRICT",
     });
     User.hasMany(models.Like, {
       foreignKey: {
         name: "userId",
-        allowNull: false,
+        allowNull: true,
       },
       onDelete: "RESTRICT",
     });
@@ -67,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
       as: "Requester",
       foreignKey: {
         name: "requesterId",
-        allowNull: false,
+        allowNull: true,
       },
       onDelete: "RESTRICT",
     });
@@ -75,7 +68,7 @@ module.exports = (sequelize, DataTypes) => {
       as: "Receiver",
       foreignKey: {
         name: "receiverId",
-        allowNull: false,
+        allowNull: true,
       },
       onDelete: "RESTRICT",
     });

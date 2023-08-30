@@ -19,21 +19,21 @@ module.exports = (sequelize, DataTypes) => {
     Post.belongsTo(models.User, {
       foreignKey: {
         name: "userId",
-        allowNull: false,
+        allowNull: true,
       },
       onDelete: "RESTRICT",
     });
     Post.hasMany(models.Comment, {
       foreignKey: {
         name: "postId",
-        allowNull: false,
+        allowNull: true,
       },
       onDelete: "RESTRICT",
     });
     Post.hasMany(models.Like, {
       foreignKey: {
         name: "postId",
-        allowNull: false,
+        allowNull: true,
       },
       onDelete: "RESTRICT",
     });

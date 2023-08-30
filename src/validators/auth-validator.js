@@ -7,14 +7,32 @@ const registerSchema = Joi.object({
   lastName: Joi.string().trim().required(),
   emailOrMobile: Joi.alternatives([
     Joi.string().email({ tlds: false }),
-    Joi.string().email(/^[0-9]{10}$/),
-  ]),
+    Joi.string().pattern(/^[0-9]{10}$/),
+  ]).strip(),
   password: Joi.string()
     .pattern(/^[a-zA-z0-9]{6,30}$/)
     .trim()
     .required(),
-  confirmPassword: Joi.string().valid(Joi.ref("password")).trim().required(),
+  confirmPassword: Joi.string()
+    .valid(Joi.ref("password"))
+    .trim()
+    .required()
+    .strip(),
+  email: Joi.forbidden().when("emailOrMobile", {
+    is: Joi.string().email({ tlds: false }),
+    then: Joi.string().default(Joi.ref("emailOrMobile")),
+  }),
+  mobile: Joi.forbidden().when("emailOrMobile", {
+    is: Joi.string().pattern(/^[0-9]{10}$/),
+    then: Joi.string().default(Joi.ref("emailOrMobile")),
+  }),
+});
+
+const loginSchema = Joi.object({
+  emailOrMobile: Joi.string().required(),
+  password: Joi.string().required(),
 });
 
 // exports.validateRegister = (input) => registerSchema.validate(input);
 exports.validateRegister = validate(registerSchema);
+exports.validateLogin = validate(loginSchema);
